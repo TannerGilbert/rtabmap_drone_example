@@ -1,0 +1,6 @@
+[submodule "velodyne_simulator"]
+	path = velodyne_simulator
+	url = https://bitbucket.org/DataspeedInc/velodyne_simulator.git
+[submodule "worlds/aws-robomaker-small-house-world"]
+	path = worlds/aws-robomaker-small-house-world
+	url = https://github.com/aws-robotics/aws-robomaker-small-house-world.git

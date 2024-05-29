@@ -56,6 +56,7 @@ RUN source /ros_entrypoint.sh && \
     rm -rf ~/catkin_ws/devel ~/catkin_ws/build ~/catkin_ws/src/mavros ~/catkin_ws/src/realsense_gazebo_plugin
 
 COPY . /root/catkin_ws/src/rtabmap_drone_example
+COPY ./velodyne_simulator /root/catkin_ws/src/velodyne_simulator
 
 RUN source /ros_entrypoint.sh && \
     cd ~/catkin_ws && \
@@ -76,6 +77,7 @@ RUN echo "#!/bin/bash" >> /entrypoint.sh && \
     echo "export ROS_PACKAGE_PATH=\$ROS_PACKAGE_PATH:/usr/local/px4:/usr/local/px4/Tools/sitl_gazebo" >> /entrypoint.sh && \
     echo "export GAZEBO_MODEL_PATH=\$GAZEBO_MODEL_PATH:/opt/ros/noetic/share/rtabmap_drone_example/models" >> /entrypoint.sh && \
     echo "export GAZEBO_MODEL_PATH=\$GAZEBO_MODEL_PATH:/opt/ros/noetic/share/realsense_gazebo_plugin/models" >> /entrypoint.sh && \
+    echo "export GAZEBO_MODEL_PATH=\$GAZEBO_MODEL_PATH:/opt/ros/noetic/share/rtabmap_drone_example/worlds/aws-robomaker-small-house-world/models" >> /entrypoint.sh && \
     echo "exec \"\$@\"" >> /entrypoint.sh && \
     chmod +x /entrypoint.sh
     

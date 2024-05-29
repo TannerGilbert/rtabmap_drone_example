@@ -293,4 +293,18 @@
         <origin xyz="0 0 0" rpy="0 0 0" />   
   </xacro:realsense-rs200>
 
+  <!-- Import Velodyne VLP-16 -->
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro" />
+  
+  <joint name="velodyne_lidar_joint" type="fixed">
+    <origin xyz="0 0 ${scale*0.1}" rpy="0 0 0" /> 
+    <parent link="base_link"/>
+    <child link="velodyne_lidar_link"/>
+  </joint>
+
+  <link name='velodyne_lidar_link'/>
+
+  <xacro:VLP-16 parent="velodyne_lidar_link" gpu="true">
+    <origin xyz="0 0 0" rpy="0 0 0" />   
+  </xacro:VLP-16>
 </robot>
