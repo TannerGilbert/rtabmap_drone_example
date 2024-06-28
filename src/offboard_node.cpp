@@ -52,7 +52,7 @@ void twist_cb(const geometry_msgs::Twist::ConstPtr& msg){
 	current_goal.velocity.x = msg->linear.x;
 	current_goal.velocity.y = msg->linear.y;
 	current_goal.velocity.z = velocity_mask == VELOCITY2D_CONTROL?0:msg->linear.z;
-	current_goal.position.z = 1.5;
+	current_goal.position.z = 1.0;
 	current_goal.yaw_rate = msg->angular.z;
 	current_goal.yaw_rate = msg->angular.z;
 	lastTwistReceived = ros::Time::now();
@@ -134,7 +134,7 @@ int main(int argc, char **argv)
 		current_goal.type_mask = POSITION_CONTROL;
 		current_goal.position.x = visionPoseTf.getOrigin().x();
 		current_goal.position.y = visionPoseTf.getOrigin().y();
-		current_goal.position.z = 1.5;
+		current_goal.position.z = 1.0;
 		current_goal.yaw = tf::getYaw(visionPoseTf.getRotation());
 		current_goal.velocity.x = 0;
 		current_goal.velocity.y = 0;
@@ -196,7 +196,7 @@ int main(int argc, char **argv)
 				if( arming_client.call(arm_cmd) &&
 						arm_cmd.response.success){
 					ROS_INFO("Vehicle armed");
-					ROS_INFO("Take off at 1.5 meter... to position=(%f,%f,%f) yaw=%f",
+					ROS_INFO("Take off at 1.0 meter... to position=(%f,%f,%f) yaw=%f",
 							current_goal.position.x,
 							current_goal.position.y,
 							current_goal.position.z,
@@ -229,7 +229,7 @@ int main(int argc, char **argv)
 			current_goal.type_mask = POSITION_CONTROL;
 			current_goal.position.x = current_pose.pose.position.x;
 			current_goal.position.y = current_pose.pose.position.y;
-			current_goal.position.z = 1.5;
+			current_goal.position.z = 1.0;
 			tfScalar yaw, pitch, roll;
 			tf::Matrix3x3 mat(tf::Quaternion(current_pose.pose.orientation.x, current_pose.pose.orientation.y, current_pose.pose.orientation.z, current_pose.pose.orientation.w));
 			mat.getEulerYPR(yaw, pitch, roll);
